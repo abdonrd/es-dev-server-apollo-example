@@ -1,4 +1,17 @@
 import { html, css, LitElement } from 'lit-element';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import gql from 'graphql-tag';
+
+const cache = new InMemoryCache();
+const link = new HttpLink({
+  uri: 'http://localhost:1337/graphql'
+});
+const client = new ApolloClient({
+  cache,
+  link
+});
 
 export class PageMain extends LitElement {
   static get styles() {
@@ -28,6 +41,7 @@ export class PageMain extends LitElement {
     return {
       title: { type: String },
       logo: { type: Function },
+      data: { type: Object },
     };
   }
 
@@ -35,6 +49,26 @@ export class PageMain extends LitElement {
     super();
     this.title = 'Hello open-wc world!';
     this.logo = html``;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this._requestUsers();
+  }
+
+  async _requestUsers() {
+    const queryResult = await client.query({
+      query: gql`
+        query {
+          users {
+            username
+          }
+        }
+      `
+    });
+
+    this.data = queryResult.data;
   }
 
   render() {
@@ -50,6 +84,14 @@ export class PageMain extends LitElement {
       >
         Code examples
       </a>
+
+      ${this.data && this.data.users ? html`
+        <ul>
+          ${this.data.users.map(user => html`
+            <li>${user.username}</li>
+          `)}
+        </ul>
+      ` : null}
     `;
   }
 }
