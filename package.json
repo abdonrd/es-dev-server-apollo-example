@@ -11,6 +11,12 @@
     "start:compatibility": "es-dev-server --app-index index.html --compatibility all --node-resolve --open --watch"
   },
   "dependencies": {
+    "fast-json-stable-stringify": "abdonrd/fast-json-stable-stringify#es-modules",
+    "graphql-tag": "abdonrd/graphql-tag#es-modules",
+    "zen-observable": "abdonrd/zen-observable#es-modules",
+
+    "@apollo/client": "3.0.0-beta.1",
+    "graphql": "^14.5.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
   },
