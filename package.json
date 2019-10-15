@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^0.11.0",
+    "babel-plugin-transform-commonjs": "^1.1.0",
     "es-dev-server": "^1.18.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.23.0"
