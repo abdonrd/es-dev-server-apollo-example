@@ -5,6 +5,7 @@
   "author": "my-app",
   "license": "MIT",
   "scripts": {
+    "postinstall": "patch-package",
     "start:build": "cd dist && es-dev-server --open",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch",
@@ -17,7 +18,8 @@
     "graphql": "^14.5.0",
     "graphql-tag": "^2.10.0",
     "lit-element": "^2.2.0",
-    "lit-html": "^1.1.0"
+    "lit-html": "^1.1.0",
+    "patch-package": "^6.2.0"
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^0.11.0",
