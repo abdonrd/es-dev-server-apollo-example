@@ -5,6 +5,7 @@
   "author": "my-app",
   "license": "MIT",
   "scripts": {
+    "postinstall": "patch-package",
     "start:build": "cd dist && es-dev-server --open",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@open-wc/building-rollup": "^0.12.0",
     "es-dev-server": "^1.20.0",
+    "patch-package": "^6.2.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.0"
   }
